@@ -5,13 +5,17 @@ const schema = mongoose.Schema({
         type: String,
         required: true,
       },
-      description: String,
-      status: {
+    description: {
+        type: String,
+    },
+    status: {
         type: String,
         enum: ["active", "inactive"],
       },
-      date: {
+    date: {
         type: Date,
         default: Date.now,
       },
 });
+
+module.exports = schema;
