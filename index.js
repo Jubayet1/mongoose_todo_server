@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose')
+const todoHandler = require('./Route/todoHandler')
 const port = 5000;
 
 const app = express();
@@ -13,6 +14,9 @@ mongoose.connect('mongodb://localhost/todos')
     .catch((err)=>{
         console.log(err)
     })
+
+
+app.use('/todo', todoHandler)
 
 app.listen(port, () => {
     console.log("server started")
