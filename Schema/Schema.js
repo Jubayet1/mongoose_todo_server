@@ -8,10 +8,6 @@ const schema = mongoose.Schema({
     description: {
         type: String,
     },
-    status: {
-        type: String,
-        enum: ["active", "inactive"],
-      },
     date: {
         type: Date,
         default: Date.now,
