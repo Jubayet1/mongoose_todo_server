@@ -9,7 +9,7 @@ app.use(express.json());
 
 mongoose.connect('mongodb://localhost/todos')
     .then(()=>{
-        console.log("connect successful")
+        console.log("mongoose connection successful")
     })
     .catch((err)=>{
         console.log(err)
