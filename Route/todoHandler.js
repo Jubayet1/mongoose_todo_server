@@ -7,14 +7,6 @@ const router = express.Router();
 const model = new mongoose.model("Todo", schema);
 
 
-router.get('/', async (req, res) => {
-
-})
-router.get('/:id', async (req, res) => {
-    try {}
-    catch (err) {}
-})
-
 // POST a todo
 router.post('/', async (req, res) => {
     const newTodo = new model(req.body)
@@ -30,6 +22,8 @@ router.post('/', async (req, res) => {
         }
     })
 })
+
+// POST multiple todo
 router.post('/all', async (req, res) => {
     await model.insertMany(req.body, (err) => {
         if (err) {
@@ -43,14 +37,32 @@ router.post('/all', async (req, res) => {
         }
     })
 })
+
+// updating a todo
 router.put('/:id', async (req, res) => {
-    try {}
-    catch (err) {}
-})
-router.delete('/:id', async (req, res) => {
-    try {}
-    catch (err) {}
-})
+    console.log("first"),
+    await model.updateOne(
+        { _id: req.params.id }, 
+        {
+            $set: {
+              title: "active",
+            },
+        }, 
+        (err) => {
+            if (err) {
+              res.status(500).json({
+                error: "There was a server side error!",
+              });
+            } else {
+              res.status(200).json({
+                message: "Todo was updated successfully!",
+              });
+            }
+        }
+        );
+        console.log("second");
+    });
+router.delete('/:id', async (req, res) => {})
 
 
 module.exports = router;
